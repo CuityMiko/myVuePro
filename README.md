@@ -22,3 +22,5 @@
 + 运行:npm run start
 ### 将md文件生成html页面
 + 运行 i5ting_toc -f README.md 命令
++ 在生成的preview目录中运行http服务器查看md文件生成的html页面
++ hs -o -p8020
