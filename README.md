@@ -20,3 +20,5 @@
 + webpack.develop.config.js : webpack开发时配置文件
 + webpack.publish.config.js : webpack发布生产时配置文件
 + 运行:npm run start
+### 将md文件生成html页面
++ 运行 i5ting_toc -f README.md 命令
