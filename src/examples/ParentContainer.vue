@@ -26,12 +26,23 @@
         <childComponent :citys="citys" :pageindex="pagindex" @autobtn="changepageindex"/>
         <h4>兄弟组件之间的通信</h4>
         <childComponent2 />
+        <h4>slot的使用</h4>
+        <slotComponent>
+            <div>
+                <p>一段内容</p>
+                <h4>solt可以在子容器标签内填充HTML文本</h4>
+            </div>
+            <div>
+                <p>内容...</p>
+            </div>
+        </slotComponent>
     </div>
 </template>
 
 <script>
 import ChildComponent  from '../components/ChildComponent.vue'
 import ChildComponent2  from '../components/ChildComponent2.vue'
+import SlotContainer  from './SlotContainer.vue'
 export default {
     data(){
         return{
@@ -60,7 +71,8 @@ export default {
     },
     components:{
         "childComponent":ChildComponent,
-        "childComponent2":ChildComponent2
+        "childComponent2":ChildComponent2,
+        "slotComponent":SlotContainer
     }
 }
 </script>
