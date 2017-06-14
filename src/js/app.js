@@ -20,6 +20,22 @@ import IfelseContainer from '../examples/IfelseContainer.vue'
 // Event属性的使用
 import EventContainer from '../examples/EventContainer.vue'
 
+// Form属性的使用
+import FormContainer from '../examples/FormContainer.vue'
+
+// 全局注册组件（要在Vue实例化即new之前注册，该使用方式一般是用在单独的html页面中）
+// Vue.component('mycomponent',{
+//     template:"\
+//         <div>全局自定义注册的组件</div>\
+//     "
+// })
+
+// 组件的使用
+import ComponentContainer from '../examples/ComponentContainer.vue'
+
+// 父子组件的使用
+import ParentContainer from '../examples/ParentContainer.vue'
+
 const app =new Vue({
-    render:h=>h(EventContainer)
+    render:h=>h(ParentContainer)
 }).$mount("#app")

@@ -5,7 +5,10 @@
 <template>
     <div>
         <ol >
-            <li v-for="(todo,index) in todos">{{todo.name}}   <button :index="index" :name="todo.name" :id="todo.id" v-on:click="todelete">删除</button></li>
+            <li v-for="(todo,index) in todos">{{todo.name}}   
+                <!--<button :index="index" :name="todo.name" :id="todo.id" v-on:click="todelete">删除</button>-->
+                <button :index="index" :name="todo.name" v-on:click="todelete(todo.id,$event)">删除</button>
+            </li>
         </ol>
     </div>
 </template>
@@ -24,10 +27,11 @@ export default {
         }
     },
     methods:{
-        todelete(event){  
+        todelete(id,event){  
             let _index=parseInt(event.target.getAttribute("index"));
             this.todos.splice(_index,1);          
-            console.log(event.target.getAttribute("id"));
+            // console.log(event.target.getAttribute("id"));
+            console.log(id);
             console.log(event.target.getAttribute("name"));
         }
     }
