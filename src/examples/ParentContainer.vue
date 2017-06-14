@@ -24,11 +24,14 @@
             </p>
         </div>
         <childComponent :citys="citys" :pageindex="pagindex" @autobtn="changepageindex"/>
+        <h4>兄弟组件之间的通信</h4>
+        <childComponent2 />
     </div>
 </template>
 
 <script>
 import ChildComponent  from '../components/ChildComponent.vue'
+import ChildComponent2  from '../components/ChildComponent2.vue'
 export default {
     data(){
         return{
@@ -56,7 +59,8 @@ export default {
         }
     },
     components:{
-        "childComponent":ChildComponent
+        "childComponent":ChildComponent,
+        "childComponent2":ChildComponent2
     }
 }
 </script>

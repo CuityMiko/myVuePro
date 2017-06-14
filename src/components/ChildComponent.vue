@@ -18,6 +18,10 @@
         <p>
             <button @click="addpageindex">+</button>{{npindex}}<button @click="jianpageindex">-</button>
         </p>
+        <p>
+            <input type="text" v-model="msg" />
+            <button @click='sendtoorz'>往第兄弟组件传递消息</button>
+        </p>
     </div>
 </template>
 
@@ -26,7 +30,8 @@ export default {
     data(){
         return{
             city:'',
-            npindex:this.pageindex
+            npindex:this.pageindex,
+            msg:''
         }
     },
     props:[
@@ -48,6 +53,10 @@ export default {
         jianpageindex(){
             this.npindex--;
             this.$emit('autobtn',-1);
+        },
+        sendtoorz(){ // 往第兄弟组件传递消息
+            this.$root.bus.$emit('tosay',this.msg);
+            this.msg='';
         }
     }
 }

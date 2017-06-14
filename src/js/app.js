@@ -37,5 +37,8 @@ import ComponentContainer from '../examples/ComponentContainer.vue'
 import ParentContainer from '../examples/ParentContainer.vue'
 
 const app =new Vue({
+    data:{
+        bus:new Vue() // 用过声明一个空的Vue实例作为中央事件总线，从而事件兄弟组件之间的通信
+    },
     render:h=>h(ParentContainer)
 }).$mount("#app")
