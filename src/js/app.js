@@ -65,6 +65,10 @@ router.afterEach((to, from) => {
     // console.log(from); // 导航从哪个路由进入的
 })
 
+// 引入Element-ui
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+Vue.use(ElementUI)
 
 const app =new Vue({
     data:{

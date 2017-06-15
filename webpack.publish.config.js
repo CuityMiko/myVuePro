@@ -47,11 +47,21 @@ module.exports = {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 loader: 'url?limit=25000&name=images/[name].[ext]'
             },
+            // {
+            //     test: /\.(eot|woff|ttf|woff2|svg)$/,
+            //     loader: 'url'
+            // }
             {
-                test: /\.(eot|woff|ttf|woff2|svg)$/,
-                loader: 'url'
+                test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+                loader: 'file-loader'
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
+                loader: 'file-loader',
+                query: {
+                name: '[name].[ext]?[hash]'
+                }
             }
-
         ]
     },
     vue: {
