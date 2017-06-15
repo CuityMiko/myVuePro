@@ -9,6 +9,8 @@ const AboutContainer = r => require.ensure([], () => r(require('../containers/Ab
 import NoFindContainer from '../containers/NoFindContainer.vue'
 import HeaderComponent from '../components/HeaderComponent.vue'
 import FooterComponent from '../components/FooterComponent.vue'
+// ElementUI
+const ElementUIContainer = r => require.ensure([], () => r(require('../containers/ElementUIContainer.vue')), 'elementui')
 
 export default[
     {
@@ -32,6 +34,7 @@ export default[
         ]
     },
     {path:'/about/:name*',component:AboutContainer},
+    {path:'/elementui',component:ElementUIContainer},
     {path:'/',redirect:'/home'}, // 如果路由为/的时候跳转到/home路由
     {path:'*',component:NoFindContainer} // 此配置要放在最下面，如果没有匹配到路由则404
 ]
