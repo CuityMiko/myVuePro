@@ -1,6 +1,5 @@
 // 项目入口文件
 import Vue from 'vue'
-import AppContainer from '../containers/AppContainer.vue'
 
 // 组件的生命周期
 import LeftContainer from '../examples/LeftContainer.vue'
@@ -42,9 +41,20 @@ import LayoutContainer from '../examples/LayoutContainer.vue'
 // 动态组件
 import DTCompContainer from '../examples/DTCompContainer.vue'
 
+import AppContainer from '../containers/AppContainer.vue'
+// Vue-router
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)  // Vue引入VueRouter
+
+import routes from './routes.js' // 引入路由配置文件
+const router=new VueRouter({
+    routes // 将路由配置文件配置在VueRouter中，相当于routes:routes的缩写
+})
+
 const app =new Vue({
     data:{
         bus:new Vue() // 用过声明一个空的Vue实例作为中央事件总线，从而事件兄弟组件之间的通信
     },
-    render:h=>h(DTCompContainer)
+    router, // 将配置后的VueRouter配置在Vue中，相当于router:router的缩写
+    render:h=>h(AppContainer)
 }).$mount("#app")
