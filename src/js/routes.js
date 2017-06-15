@@ -3,7 +3,9 @@ import HomeContainer from '../containers/HomeContainer.vue'
 import MovieContainer from '../containers/MovieContainer.vue'
 import MovieListContainer from '../containers/MovieListContainer.vue'
 import MovieDetailContainer from '../containers/MovieDetailContainer.vue'
-import AboutContainer from '../containers/AboutContainer.vue'
+// import AboutContainer from '../containers/AboutContainer.vue'
+// 实现页面加载的时候异步加载文件
+const AboutContainer = r => require.ensure([], () => r(require('../containers/AboutContainer.vue')), 'about')
 import NoFindContainer from '../containers/NoFindContainer.vue'
 import HeaderComponent from '../components/HeaderComponent.vue'
 import FooterComponent from '../components/FooterComponent.vue'
