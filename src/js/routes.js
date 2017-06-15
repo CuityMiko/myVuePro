@@ -18,12 +18,16 @@ export default[
             footer: FooterComponent
         }
     },
-    {path:'/movie',component:MovieContainer,
-     children:[
-        {path:'',component:MovieListContainer}, // 设置默认页面
-        {path:':type/:page/:q',component:MovieListContainer},
-        {path:'detail/:id',component:MovieDetailContainer}
-     ]
+    {
+        path:'/movie',component:MovieContainer,
+        beforeEnter: (to, from, next) => { // 单个路由的导航钩子
+            next();
+        },
+        children:[
+            {path:'',component:MovieListContainer}, // 设置默认页面
+            {path:':type/:page/:q',component:MovieListContainer},
+            {path:'detail/:id',component:MovieDetailContainer}
+        ]
     },
     {path:'/about/:name*',component:AboutContainer},
     {path:'/',redirect:'/home'}, // 如果路由为/的时候跳转到/home路由
