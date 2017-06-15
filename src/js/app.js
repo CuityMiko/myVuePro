@@ -44,7 +44,7 @@ import DTCompContainer from '../examples/DTCompContainer.vue'
 import AppContainer from '../containers/AppContainer.vue'
 // Vue-router
 import VueRouter from 'vue-router'
-Vue.use(VueRouter)  // Vue引入VueRouter
+Vue.use(VueRouter)  // 在Vue中注册VueRouter
 
 import routes from './routes.js' // 引入路由配置文件
 const router=new VueRouter({
@@ -55,6 +55,6 @@ const app =new Vue({
     data:{
         bus:new Vue() // 用过声明一个空的Vue实例作为中央事件总线，从而事件兄弟组件之间的通信
     },
-    router, // 将配置后的VueRouter配置在Vue中，相当于router:router的缩写
+    router, // 将配置后的VueRouter挂载到Vue根实例上，相当于router:router的缩写
     render:h=>h(AppContainer)
 }).$mount("#app")
