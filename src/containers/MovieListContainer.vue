@@ -5,7 +5,9 @@
 <template>
     <div>
         <h3>{{title}}</h3>
-        <p>{{name}}：{{msg}}</p>
+        <p>
+            <router-link to="/movie/detail/1000?name=新木乃伊">电影详情</router-link>
+        </p>
     </div>
 </template>
 
@@ -13,9 +15,7 @@
 export default {
     data(){
         return {
-            title:'关于我们',
-            name:this.$route.params.name||'',
-            msg:this.$route.query.msg||''
+            title:'榜单电影'
         }
     }
 }

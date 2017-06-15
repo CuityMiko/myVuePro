@@ -48,6 +48,7 @@ Vue.use(VueRouter)  // 在Vue中注册VueRouter
 
 import routes from './routes.js' // 引入路由配置文件
 const router=new VueRouter({
+    // mode: 'history', // 根据HTML5 History API方式将#锚点的方式变成url的方式
     routes // 将路由配置文件配置在VueRouter中，相当于routes:routes的缩写
 })
 

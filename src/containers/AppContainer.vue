@@ -22,11 +22,13 @@
         <h3>{{msg}}</h3>
         <div class="nav">
             <router-link to="/home">首页</router-link>
-            <router-link to="/movie">电影列表</router-link>
+            <router-link to="/movie">榜单电影</router-link>
             <router-link to="/about">关于我们</router-link>
         </div>
         <!--路由渲染的页面容器-->
+        <router-view name='header'></router-view>
         <router-view></router-view>
+        <router-view name='footer'></router-view>
     </div>
 </template>
 
