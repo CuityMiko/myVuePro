@@ -6,11 +6,10 @@ var path = require('path');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
-    // entry:path.resolve(__dirname,'src/js/app.js'),
     entry:[
         'webpack/hot/dev-server',
         'webpack-dev-server/client?http://localhost:8080',
-        path.resolve(__dirname,'src/js/app.js')
+        path.resolve(__dirname,'src/app.js')
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -52,11 +51,21 @@ module.exports = {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 loader: 'url?limit=25000'
             },
+            // {
+            //     test: /\.(eot|woff|ttf|woff2|svg)$/,
+            //     loader: 'url'
+            // },
             {
-                test: /\.(eot|woff|ttf|woff2|svg)$/,
-                loader: 'url'
+                test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+                loader: 'file-loader'
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
+                loader: 'file-loader',
+                query: {
+                name: '[name].[ext]?[hash]'
+                }
             }
-
         ]
     },
     vue: {

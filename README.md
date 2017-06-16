@@ -1,10 +1,10 @@
 ### Vue项目基本骨架
 + src : 项目程序目录
 + src/bower_components : bower管理的web前端libs
-+ src/components : 组件
++ src/components : Vue自定义组件目录
 + src/containers : Vue容器文件目录
-+ src/js/app.js : 项目入口文件
-+ src/pages : 前端页面
++ src/examples : 用于测试实例目录
++ src/app.js : 项目入口文件
 + src/index.html : 项目入口页面
 + src/template.html : webpack生产环境自动生成到dist目录的项目入口页面模板
 + .babelrc : babel配置文件
@@ -19,6 +19,11 @@
 + typings.json : 智能提示配置文件
 + webpack.develop.config.js : webpack开发时配置文件
 + webpack.publish.config.js : webpack发布生产时配置文件
-+ 运行:npm run start
++ 开发环境运行 : npm run develop
++ 打包发布 : npm run publish
 ### 将md文件生成html页面
 + 运行 i5ting_toc -f README.md 命令
++ 附带整理的vue.md以及vue-router.md和eslint.md文件
++ 在生成的preview目录中运行http服务器查看md文件生成的html页面
++ hs -o -p8020
+### 加入Element-UI
