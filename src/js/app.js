@@ -70,6 +70,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 Vue.use(ElementUI)
 
+// 跨域方式请求数据：vue-resource方式
+import vueResource from 'vue-resource'
+Vue.use(vueResource);
+
 const app =new Vue({
     data:{
         bus:new Vue() // 用过声明一个空的Vue实例作为中央事件总线，从而事件兄弟组件之间的通信
