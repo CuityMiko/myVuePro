@@ -221,6 +221,6 @@ this.$http({
 ```
 + Vue2.0版本推荐跨域请求使用axios方式，因为axios比vue-resource方式更干净，减少不必要的DOM操作，代码简洁，效率高，当然，如果请求第三方API是jsonp格式，则建议在server服务器端进行模拟请求然后再通过axios方式请求server服务器端
 
-### v2版本新增node服务以及跨域访问方式
+### v2版本新增node服务以及跨域访问方式以及封装httpHelper类
 
 
