@@ -61,6 +61,7 @@ var index=function(req,res,next){
     //         }
     //     });
     // })
+
     res.render('index',{
         model:{
             username:'zhangsan'

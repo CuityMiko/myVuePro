@@ -223,4 +223,8 @@ this.$http({
 
 ### v2版本新增node服务以及跨域访问方式以及封装httpHelper类
 
+### v3版本主要新增在server端
++ 新增mongoose的使用
++ 新增socket.io的使用并实现点对点、点对多的消息推送
+
 
