@@ -54,6 +54,8 @@
             </div>
         </p>
         <mywatch></mywatch>
+        <myAnimateCss></myAnimateCss>
+        <mycomponents></mycomponents>
     </div>
 </template>
 
@@ -61,7 +63,12 @@
 import MovieService from '../services/MovieService.js'
 import httpHelper from '../js/commons/httpHelper.js'
 // examples
+// watch
 import WatchComponent from '../components/examples/WatchComponent.vue'
+// Animate.css
+import AnimateCssComponent from '../components/examples/AnimateCssComponent.vue'
+// 自定义组件
+import ComponentsComponent from '../components/examples/ComponentsComponent.vue'
 export default {
     data(){
         return {
@@ -126,7 +133,9 @@ export default {
     watch:{
     },
     components:{
-        'mywatch':WatchComponent
+        'mywatch':WatchComponent,
+        'myAnimateCss':AnimateCssComponent,
+        'mycomponents':ComponentsComponent
     }
 }
 </script>
