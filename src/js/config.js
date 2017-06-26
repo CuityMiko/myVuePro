@@ -17,5 +17,5 @@ export default{
             movie:'https://api.douban.com/v2/movie/'
         }
     },
-    fetchmode:'vue-resource' // 请求获取数据的方式：fetch、axios、vue-resource
+    fetchmode:'axios' // 请求获取数据的方式：fetch、axios、vue-resource
 }
