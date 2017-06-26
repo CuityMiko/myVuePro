@@ -80,4 +80,4 @@ const app =new Vue({
     },
     router, // 将配置后的VueRouter挂载到Vue根实例上，相当于router:router的缩写
     render:h=>h(AppContainer)
-}).$mount("#app")
+}).$mount("#app") // $mount等同于Vue内的el属性
