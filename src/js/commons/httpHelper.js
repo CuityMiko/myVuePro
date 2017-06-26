@@ -60,16 +60,17 @@ export default class HttpHelper{
      * Jsonp请求
      * @param {*请求url} url 
      * @param {*请求参数} params 
+     * @param {*设置callback名称，默认callback} cbname 
      * @param {*可选参数：Vue根实例的$http} vrobj 
      */
-    static Jsonp(url,params,vrobj=null){
+    static Jsonp(url,params,cbname='callback',vrobj=null){
         switch (this.fetchMode) {
             case "fetch":
             case "axios":
-                return this.that.commonJsonp(url,params);
+                return this.that.commonJsonp(url,params,cbname);
             case "vue-resource":
                 if(vrobj!=null)
-                    return this.that.vrJsonp(url,params,vrobj);
+                    return this.that.vrJsonp(url,params,cbname,vrobj);
                 else
                     return this.that.commonJsonp(url,params);
             default:
@@ -250,12 +251,14 @@ export default class HttpHelper{
      * vue-resource方式Jsonp请求
      * @param {*请求url} url 
      * @param {*请求参数} params 
+     * @param {*设置callback名称，默认callback} cbname 
      * @param {*挂载到Vue根实例的$http} vrobj 
      */
-    vrJsonp(url,params,vrobj){
-        let _url=url+"?"+qs.stringify(params);
+    vrJsonp(url,params,cbname='callback',vrobj){
         return new Promise((resolve, reject)=>{
-            vrobj.jsonp(_url)  
+            vrobj.jsonp(url,params,{
+                jsonp:cbname
+            })  
             .then((res) => {
                 if (res.ok)
                     return res.body;
