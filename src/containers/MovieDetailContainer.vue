@@ -34,7 +34,10 @@ export default {
     methods:{
         toabout(){
             // this.$router.push('/about/zhangsan?msg=hello')
+            // 此种导航浏览器是有回退按钮的
             this.$router.push({path:'/about/wangwu',query: { msg: 'nihao' }})
+            // 替换路由，此种方式的导航，浏览器是没有回退按钮的，此种方式的导航是不进入浏览器的历史记录的
+            // this.$router.replace({path:'/about/wangwu',query: { msg: 'nihao' }})
         }
     },
     mounted(){

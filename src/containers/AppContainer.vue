@@ -28,12 +28,15 @@
         </div>
         <!--路由渲染的页面容器-->
         <router-view name='header'></router-view>
-        <router-view></router-view>
+        <transition enter-active-class="animated fadeInLeft" leave-active-class="animated fadeOutRight">
+            <router-view></router-view>
+        </transition>
         <router-view name='footer'></router-view>
     </div>
 </template>
 
 <script>
+    import '../bower_components/animate.css/animate.css'
     export default{
         data(){
             return {
