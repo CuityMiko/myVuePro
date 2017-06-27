@@ -29,6 +29,7 @@
     "babel-preset-vue-app": "^1.2.0",
     "clean-webpack-plugin": "^0.1.14",
     "css-loader": "~0.24.0",
+    "date-format": "^1.1.0",
     "del": "^2.2.2",
     "eslint": "^3.12.0",
     "eslint-loader": "^1.6.1",

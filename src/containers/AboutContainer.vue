@@ -5,57 +5,68 @@
 <template>
     <div>
         <h3>{{title}}</h3>
-        <p>{{name}}：{{msg}}</p>
-        <p>
-            <h3>element-ui</h3>
-            <el-button type="primary">主要按钮</el-button>
-        </p>
-        <div class="line"></div>
-        <p>
-            <h3>智能搜索</h3>
-            <el-row type="flex">
-                <el-col :span="6">
-                    <el-input
-                        placeholder="请输入搜索内容..."
-                        :icon="icon"
-                        v-model.trim="search"
-                        @change="tosearch"
-                        >
-                    </el-input>    
-                </el-col>
-            </el-row>
-            <ol>
-                <li v-for="(item,index) in searchdata" :key="index">{{item}}</li>
-            </ol>
-        </p>
-        <div class="line"></div>
-        <p>
-            <ul>
-                <li v-for="(val,index) in qius" :key="index">{{val}}</li>
-            </ul>
-            <el-row type="flex">
-                <el-col :span="3">
-                    <el-input
-                        placeholder="请输入..."
-                        v-model.trim="qiu"
-                        >
-                    </el-input>    
-                </el-col>
-                <el-col :span="3">
-                    <el-button size="small" @click='addqiu'>添加球</el-button>
-                </el-col>
-            </el-row>
-        </p>
-        <p>
-            <h3>自定义指令</h3>
-            <input type="text" v-model="txtcolor">
-            <div v-red="txtcolor">
-                dsasadsa
-            </div>
-        </p>
-        <mywatch></mywatch>
-        <myAnimateCss></myAnimateCss>
-        <mycomponents></mycomponents>
+        <el-collapse>
+            <el-collapse-item title="基础例子" name="1">
+                <p>{{name}}：{{msg}}</p>
+                    <p>
+                        <h3>element-ui</h3>
+                        <el-button type="primary">主要按钮</el-button>
+                    </p>
+                    <div class="line"></div>
+                    <p>
+                        <h3>智能搜索</h3>
+                        <el-row type="flex">
+                            <el-col :span="6">
+                                <el-input
+                                    placeholder="请输入搜索内容..."
+                                    :icon="icon"
+                                    v-model.trim="search"
+                                    @change="tosearch"
+                                    >
+                                </el-input>    
+                            </el-col>
+                        </el-row>
+                        <ol>
+                            <li v-for="(item,index) in searchdata" :key="index">{{item}}</li>
+                        </ol>
+                    </p>
+                    <div class="line"></div>
+                    <p>
+                        <ul>
+                            <li v-for="(val,index) in qius" :key="index">{{val}}</li>
+                        </ul>
+                        <el-row type="flex">
+                            <el-col :span="3">
+                                <el-input
+                                    placeholder="请输入..."
+                                    v-model.trim="qiu"
+                                    >
+                                </el-input>    
+                            </el-col>
+                            <el-col :span="3">
+                                <el-button size="small" @click='addqiu'>添加球</el-button>
+                            </el-col>
+                        </el-row>
+                    </p>
+                    <p>
+                        <h3>自定义指令</h3>
+                        <input type="text" v-model="txtcolor">
+                        <div v-red="txtcolor">
+                            dsasadsa
+                        </div>
+                    </p>
+            </el-collapse-item>
+            <el-collapse-item title="补充例子" name="2">
+                <mywatch></mywatch>
+                <myAnimateCss></myAnimateCss>
+                <mycomponents></mycomponents>
+            </el-collapse-item>
+            <el-collapse-item title="补充例子2" name="3">
+                <h3>组件之间的基础通信---中央事件总线</h3>
+                <el-button @click="getcdata">获取子组件的数据</el-button>
+                <mychild></mychild>
+            </el-collapse-item>
+        </el-collapse>
     </div>
 </template>
 
@@ -69,6 +80,8 @@ import WatchComponent from '../components/examples/WatchComponent.vue'
 import AnimateCssComponent from '../components/examples/AnimateCssComponent.vue'
 // 自定义组件
 import ComponentsComponent from '../components/examples/ComponentsComponent.vue'
+// 组件之间的通信
+import ChildrenComponent from '../components/examples/ChildrenComponent.vue'
 export default {
     data(){
         return {
@@ -99,9 +112,18 @@ export default {
         },
         addqiu(){
             this.qius.push(this.qiu)
+        },
+        getcdata(){
+            this.$root.bus.$on('cdata',(data)=>{
+                console.log('开始监听....')
+                console.log(data);
+            })
         }
     },
     mounted(){
+        // this.$root.bus.$on('cdata',(data)=>{
+        //     console.log(data);
+        // })
         this.$root.lodash.times(7,(i)=>console.log(i))
         let _movietype="coming_soon";
         // let _params={
@@ -136,7 +158,8 @@ export default {
     components:{
         'mywatch':WatchComponent,
         'myAnimateCss':AnimateCssComponent,
-        'mycomponents':ComponentsComponent
+        'mycomponents':ComponentsComponent,
+        'mychild':ChildrenComponent
     }
 }
 </script>
