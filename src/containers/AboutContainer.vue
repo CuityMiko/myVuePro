@@ -102,6 +102,7 @@ export default {
         }
     },
     mounted(){
+        this.$root.lodash.times(7,(i)=>console.log(i))
         let _movietype="coming_soon";
         // let _params={
         //     start:0,

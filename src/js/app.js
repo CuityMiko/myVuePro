@@ -74,8 +74,12 @@ Vue.use(ElementUI)
 import vueResource from 'vue-resource'
 Vue.use(vueResource);
 
+// lodash在Vue中的集成与使用
+import lodash from 'lodash'
+
 const app =new Vue({
     data:{
+        lodash, // lodash在Vue中的集成与使用
         bus:new Vue() // 用过声明一个空的Vue实例作为中央事件总线，从而事件兄弟组件之间的通信
     },
     router, // 将配置后的VueRouter挂载到Vue根实例上，相当于router:router的缩写
