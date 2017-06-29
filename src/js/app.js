@@ -77,6 +77,10 @@ Vue.use(vueResource);
 // lodash在Vue中的集成与使用
 import lodash from 'lodash'
 
+// 使用自定义插件
+import Loading from '../components/loading/'
+Vue.use(Loading)
+
 const app =new Vue({
     data:{
         lodash, // lodash在Vue中的集成与使用

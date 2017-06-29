@@ -5,6 +5,7 @@
 <template>
     <div>
         <h3>{{title}}</h3>
+        <Loading :title="loadingmsg"></Loading>
         <el-collapse>
             <el-collapse-item title="基础例子" name="1">
                 <p>{{name}}：{{msg}}</p>
@@ -93,7 +94,8 @@ export default {
             searchdata:[],
             qius:[],
             qiu:'',
-            txtcolor:'#ccc'
+            txtcolor:'#ccc',
+            loadingmsg:'玩命加载中...'
         }
     },
     methods:{
