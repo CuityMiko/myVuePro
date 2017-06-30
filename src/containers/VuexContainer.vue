@@ -23,6 +23,8 @@
 </template>
 
 <script>
+// mapActions:管理所有事件的行为
+// mapActions:获取数据(等同于this.$store.state.data)
 import {mapActions,mapGetters} from 'vuex'
 export default {
     data(){
