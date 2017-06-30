@@ -81,11 +81,15 @@ import lodash from 'lodash'
 import Loading from '../components/loading/'
 Vue.use(Loading)
 
+// Vuex的Store
+import store from './store.js'
+
 const app =new Vue({
     data:{
         lodash, // lodash在Vue中的集成与使用
         bus:new Vue() // 用过声明一个空的Vue实例作为中央事件总线，从而事件兄弟组件之间的通信
     },
+    store, // 将Vuex的Store挂载到vue的根实例上
     router, // 将配置后的VueRouter挂载到Vue根实例上，相当于router:router的缩写
     render:h=>h(AppContainer)
 }).$mount("#app") // $mount等同于Vue内的el属性

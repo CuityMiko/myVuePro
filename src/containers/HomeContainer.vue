@@ -14,6 +14,9 @@ export default {
         return {
             title:'首页'
         }
+    },
+    mounted(){
+        console.log(this.$store.state.num);
     }
 }
 </script>

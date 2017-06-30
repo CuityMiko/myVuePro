@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "preinstall": "bower install",
     "predevelop": "npm install",
-    "develop": "webpack-dev-server  --config webpack.develop.config.js --devtool eval --progress --colors --hot --content-base src",
+    "develop": "webpack-dev-server  --config webpack.develop.config.js --devtool eval --progress --colors --hot --content-base src --port 8090",
     "publish": "webpack --config  webpack.publish.config.js",
     "gulp": "gulp"
   },
@@ -50,6 +50,7 @@
     "style-loader": "~0.13.1",
     "url-loader": "~0.5.7",
     "vue-loader": "^10.0.2",
+    "vuex": "^2.3.1",
     "webpack": "~1.13.2",
     "webpack-dev-middleware": "~1.5.1",
     "webpack-dev-server": "^1.16.2",

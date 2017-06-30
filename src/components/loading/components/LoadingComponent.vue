@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     .loading-box{
         color: red;
         display: flex;

@@ -226,5 +226,10 @@ this.$http({
 ### v3版本主要新增在server端
 + 新增mongoose的使用
 + 新增socket.io的使用并实现点对点、点对多的消息推送
++ AnimateCss使用
++ vue.use的使用，自定义插件
+
+### v4版本主要引入vuex的使用
++ npm install vuex -D
 
 
