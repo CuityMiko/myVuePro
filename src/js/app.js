@@ -82,7 +82,11 @@ import Loading from '../components/loading/'
 Vue.use(Loading)
 
 // Vuex的Store
-import store from './store.js'
+// import store from './store.js'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+// const store = require('./store.js')(Vuex)
+const store = require('./stores/')(Vuex)
 
 const app =new Vue({
     data:{

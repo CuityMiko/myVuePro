@@ -1,9 +1,9 @@
 /**
  * Vue的状态管理
  */
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
+// import Vue from 'vue'
+// import Vuex from 'vuex'
+// Vue.use(Vuex)
 
 /**
  * state
@@ -66,9 +66,18 @@ const getters={
 /**
  * export Vuex的Store对象
  */
-export default new Vuex.Store({
-    state,
-    mutations,
-    actions,
-    getters
-})
+// export default new Vuex.Store({
+//     state,
+//     mutations,
+//     actions,
+//     getters
+// })
+
+module.exports=(Vuex)=>{
+    return new Vuex.Store({
+        state,
+        mutations,
+        actions,
+        getters
+    })
+}
