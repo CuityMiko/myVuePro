@@ -7,6 +7,25 @@ import qs from 'querystring'
 // 配置文件
 import Config from '../config.js' 
 
+// axios的相关配置
+// request：当发起请求的时候的配置
+// axios.interceptors.request.use((conf)=>{
+//     store.dispatch('showloading');
+//     return conf;
+// },(err)=>{
+//     return Promise.reject(err);
+// })
+// response：当响应结果的时候的配置
+// axios.interceptors.response.use((conf)=>{
+//     store.dispatch('hideloading')
+// },(err)=>{
+//     return Promise.reject(err);
+// })
+// 配置请求的根路径
+// axios.defaults.baseURL=Config.server_url;
+// 设置默认的头部信息
+// axios.defaults.headers.post['Content-Type']='application/x-www-form-urlencoded'; // post请求需要设置的头部信息
+
 export default class HttpHelper{
     //请求数据的方式 fetch、axios、vue-resource
     static fetchMode=Config.fetchmode;

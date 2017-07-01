@@ -49,6 +49,9 @@ Vue.use(VueRouter)  // 在Vue中注册VueRouter
 import routes from './routes.js' // 引入路由配置文件
 const router=new VueRouter({
     // mode: 'history', // 根据HTML5 History API方式将#锚点的方式变成url的方式
+    scrollBehavior:()=>({ // 设置当路由切换的时候每次都是从页面开始位置开始显示
+        y:0
+    }),
     routes // 将路由配置文件配置在VueRouter中，相当于routes:routes的缩写
 })
 
@@ -87,6 +90,9 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 // const store = require('./store.js')(Vuex)
 const store = require('./stores/')(Vuex)
+
+import httpHelper from './commons/httpHelper'
+Vue.prototype.$httpHelper=httpHelper; // 将httpHelper作为Vue的属性挂载到Vue上
 
 const app =new Vue({
     data:{

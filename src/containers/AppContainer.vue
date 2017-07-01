@@ -30,7 +30,10 @@
         <!--路由渲染的页面容器-->
         <router-view name='header'></router-view>
         <transition enter-active-class="animated fadeInLeft" leave-active-class="animated fadeOutRight">
-            <router-view></router-view>
+            <!--keep-alive：保持页面状态，可以作为页面缓存使用.可以缓存住异步请求加载的数据-->
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </transition>
         <router-view name='footer'></router-view>
     </div>
