@@ -42,6 +42,7 @@
     "less": "~2.7.1",
     "less-loader": "~2.2.3",
     "lodash": "~4.11.1",
+    "mint-ui": "^2.2.7",
     "open-browser-webpack-plugin": "0.0.3",
     "postcss-loader": "~0.11.0",
     "precss": "~1.4.0",

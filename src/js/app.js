@@ -73,6 +73,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 Vue.use(ElementUI)
 
+// mint-ui
+import Mint from 'mint-ui';
+// mint-ui css
+import 'mint-ui/lib/style.css'
+Vue.use(Mint);
+
 // 跨域方式请求数据：vue-resource方式
 import vueResource from 'vue-resource'
 Vue.use(vueResource);
