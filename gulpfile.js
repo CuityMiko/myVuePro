@@ -54,14 +54,20 @@ gulp.task('sequence', gulpSequence('cleanmd', 'markdown'));
 
 // 删除md目录
 gulp.task('cleanmd', function (cb) {
-    del('./md/*.md').then(function () {
+    del('./md/*.html').then(function () {
         cb()
     });
 });
 var markdown = require('gulp-markdown');
+var rename = require("gulp-rename");
 
 gulp.task('markdown', function (cb) {
-	gulp.src(['./*.md','./markdown/**/*.md'])
+    gulp.src(['./*.md','./markdown/**/*.md'])
+        .pipe(rename(function (path) {
+            if(path.basename=="README"){
+                path.basename="index"
+            }
+        }))
 		.pipe(markdown())
         .pipe(gulp.dest('md'))
 });

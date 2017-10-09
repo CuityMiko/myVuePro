@@ -38,6 +38,7 @@
     "file-loader": "~0.8.5",
     "gulp": "^3.9.1",
     "gulp-markdown": "^1.2.0",
+    "gulp-rename": "^1.2.2",
     "gulp-sequence": "^0.4.6",
     "html-webpack-plugin": "^2.24.1",
     "less": "~2.7.1",
