@@ -1,0 +1,231 @@
+<h3 id="vue-">Vue项目基本骨架</h3>
+<ul>
+<li>src : 项目程序目录</li>
+<li>src/bower_components : bower管理的web前端libs</li>
+<li>src/components : 组件</li>
+<li>src/containers : Vue容器文件目录</li>
+<li>src/js/app.js : 项目入口文件</li>
+<li>src/pages : 前端页面</li>
+<li>src/index.html : 项目入口页面</li>
+<li>src/template.html : webpack生产环境自动生成到dist目录的项目入口页面模板</li>
+<li>.babelrc : babel配置文件</li>
+<li>.bowerrc : 指定bower install的组件存放位置</li>
+<li>.eslintignore : 配置eslint语法规范监测忽略的文件目录</li>
+<li>.eslintrc.js : 定义eslint语法规范规则</li>
+<li>.gitignore : 定义git上传忽略的文件目录</li>
+<li>bower.json : bower配置文件</li>
+<li>ESLint.md : eslint笔记</li>
+<li>gulpfile.js : gulp配置文件</li>
+<li>package.json : npm配置文件</li>
+<li>typings.json : 智能提示配置文件</li>
+<li>webpack.develop.config.js : webpack开发时配置文件</li>
+<li>webpack.publish.config.js : webpack发布生产时配置文件</li>
+<li>server : node服务器端</li>
+<li>运行:
+```
+npm install
+npm run develop</li>
+</ul>
+<p>// 打包
+npm run publish</p>
+<pre><code>### 将md文件生成html页面
++ 运行 i5ting_toc -f README.md 命令
++ 在生成的preview目录中运行http服务器查看md文件生成的html页面
++ hs -o -p8020
+### v1版本引入element-ui框架的使用
+
+### v2版本引入跨域方式
+
+#### 跨域方式：
+
+##### 方式一：fetch
++ es6中自带了fetch方式解决跨域问题
++ fetch属于cors方式跨域，cors支持get/post等各种方式，
++ fecth方式可以直接获取服务器返回的json或text数据，没法直接获取jsonp方式的返回数据，需要自己将jsonp返回的值进行手动解析成json格式
++ 引入第三方模块 fetch-jsonp 可以直接获取jsonp方式返回的数据
++ jsonp只支持get方式的请求，不支持post方式的请求，因为jsonp的原理就是通过script标签的方式进行跨域访问
++ 代码如下：
+```javascript
+
+// fetch方式：
+// get请求：
+let _url=`http://127.0.0.1:3389/movie/getlist?classify=${movieobj.classify}&amp;pageindex=${movieobj.pageindex}&amp;pagecount=${movieobj.pagecount}&amp;city=杭州`;
+fetch(_url)  
+    .then((response) =&gt; {
+        if (response.ok) {
+            return response.json()
+        } else {
+            console.error(&#39;服务器繁忙，请稍后再试；\r\nCode:&#39; + response.status)
+        }
+    })
+    .then((data) =&gt; {
+        console.log(data)
+    })
+    .catch((err)=&gt; {
+        console.error(err)
+    })
+
+// post请求：
+let _url=`http://127.0.0.1:3389/movie/getlist`;
+fetch(_url, {
+    method: &quot;POST&quot;,
+    headers: {
+        &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;
+    },
+    body: `msg=${_msg}`
+    }).then(function(res) {
+        if (res.ok) {
+            return res.json();
+        }
+    }).then((data)=&gt;{
+        resolve(data);
+    }).catch((err)=&gt;{
+        reject(err);
+    })
+
+// fetch-jsonp实现jsonp方式的请求
+// 安装
+// npm install fetch-jsonp --save
+// 引入
+import fetchJsonp from &#39;fetch-jsonp&#39;
+let count=12;
+let start=(movieobj.pageindex-1)*count;
+let city=&#39;杭州&#39;;
+let _purl=`http://api.douban.com/v2/movie/${movieobj.classify}?start=${start}&amp;count=${count}&amp;city=${city}`
+fetchJsonp(_purl)
+.then(function(response) {
+    return response.json()
+}).then(function(json) {
+    console.log(json)
+}).catch(function(ex) {
+    console.log(&#39;parsing failed&#39;, ex)
+})
+</code></pre><h5 id="-">注意：</h5>
+<ul>
+<li>实现跨域请求需要服务器端也要支持跨域请求才可以</li>
+<li>以nodejs为例需要在app.js node的入口文件中加入如下代码才能使服务器端支持跨域请求<pre><code class="lang-javascript">// 允许访问api的时候cors跨域（允许同域名不同端口号之间的跨域）
+// 当工程作为API接口对外提供时，实现允许跨域访问
+app.use((req,res,next)=&gt;{
+  // 增加了cors跨域的请求头
+  res.header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);
+  res.header(&quot;Access-Control-Allow-Headers&quot;, &quot;Content-Type,Content-Length, Authorization, Accept,X-Requested-With&quot;);
+  res.header(&quot;Access-Control-Allow-Methods&quot;,&quot;PUT,POST,GET,DELETE,OPTIONS&quot;);
+  next();
+})
+</code></pre>
+</li>
+</ul>
+<h5 id="-vue-">方式二：Vue有自己的跨域实现方式</h5>
+<ul>
+<li>方式一：</li>
+<li>安装并引入vue-resource
+```
+npm install vue-resource --save</li>
+</ul>
+<p>// 引入vue-resource
+import vueResource from &#39;vue-resource&#39;
+Vue.use(vueResource);</p>
+<pre><code>+ 请求方式：
++ http://www.liubf.com/index.php?c=content&amp;a=show&amp;id=58
+```javascript
+// get方式：
+let count=12;
+let start=(movieobj.pageindex-1)*count;
+let city=&#39;杭州&#39;;
+let _url=`http://api.douban.com/v2/movie/${movieobj.classify}?start=${start}&amp;count=${count}&amp;city=${city}`
+this.$http.get(_url).then(res =&gt; {
+    // get body data
+    this.someData = response.body;
+  }, err =&gt; {
+    // error callback
+  });
+
+// jsonp方式
+this.$http.jsonp(_url).then(res =&gt; {
+    // get body data
+    this.data = res.body;
+  }, err =&gt; {
+    // error callback
+  });
+
+// post方式
+let _obj={
+    start:0,
+    count:10,
+    city:&#39;&#39;,
+    q:&#39;&#39;
+}
+this.$http.post(_url,_obj).then(res =&gt; {
+    // get body data
+    this.data = res.body;
+  }, err =&gt; {
+    // error callback
+  });
+</code></pre><ul>
+<li>方式二：</li>
+<li>安装并引入axios</li>
+<li><a href="https://github.com/mzabriskie/axios">https://github.com/mzabriskie/axios</a></li>
+<li>axios也是不支持请求jsonp格式的数据的，如需请求jsonp格式的数据可以参考以下方式：</li>
+<li><a href="https://github.com/mzabriskie/axios/blob/master/COOKBOOK.md#jsonp">https://github.com/mzabriskie/axios/blob/master/COOKBOOK.md#jsonp</a></li>
+<li>或者直接使用fetch-jsonp的方式
+```javascript
+// app文件引入axios
+import axios from &#39;axios&#39;
+Vue.prototype.$http=axios;</li>
+</ul>
+<p>// get方式
+this.$http.get(&#39;/user?ID=12345&#39;)
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });</p>
+<p>// get方式二：
+this.$http.get(&#39;/user&#39;, {
+    params: {
+        ID: 12345
+    }
+})
+.then(function (response) {
+    console.log(response);
+})
+.catch(function (error) {
+    console.log(error);
+});</p>
+<p>// post方式：
+this.$http.post(&#39;/user&#39;, {
+    firstName: &#39;Fred&#39;,
+    lastName: &#39;Flintstone&#39;
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });</p>
+<p>// 请求图片
+this.$http({
+  method:&#39;get&#39;,
+  url:&#39;<a href="http://bit.ly/2mTM3nY">http://bit.ly/2mTM3nY</a>&#39;,
+  responseType:&#39;stream&#39;
+})
+.then(function(response) {
+  response.data.pipe(fs.createWriteStream(&#39;ada_lovelace.jpg&#39;))
+});
+```</p>
+<ul>
+<li>Vue2.0版本推荐跨域请求使用axios方式，因为axios比vue-resource方式更干净，减少不必要的DOM操作，代码简洁，效率高，当然，如果请求第三方API是jsonp格式，则建议在server服务器端进行模拟请求然后再通过axios方式请求server服务器端</li>
+</ul>
+<h3 id="v2-node-httphelper-">v2版本新增node服务以及跨域访问方式以及封装httpHelper类</h3>
+<h3 id="v3-server-">v3版本主要新增在server端</h3>
+<ul>
+<li>新增mongoose的使用</li>
+<li>新增socket.io的使用并实现点对点、点对多的消息推送</li>
+<li>AnimateCss使用</li>
+<li>vue.use的使用，自定义插件</li>
+</ul>
+<h3 id="v4-vuex-">v4版本主要引入vuex的使用</h3>
+<ul>
+<li>npm install vuex -D</li>
+</ul>
