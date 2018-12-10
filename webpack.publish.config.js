@@ -110,19 +110,13 @@ module.exports = {
                     "css": ["app.css"],
                     "js": ["vendors.js","bundle.js"]
                 }
-            },
-            // 效果不大，情怀至上
-            // minify: {
-            //     removeComments: true,
-            //     collapseWhitespace: true,
-            //     removeAttributeQuotes: true
-            // }
+            }
         }),
         new webpack.DefinePlugin({
-            //去掉react中的警告，react会自己判断
+            //去掉react中的警告
             'process.env': {
                 NODE_ENV: '"production"'
             }
-        }),
+        })
     ]
 }
